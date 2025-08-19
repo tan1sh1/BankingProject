@@ -11,7 +11,7 @@ public class Customer {
     private String password;
     private LocalDate dob;
 
-    public Customer(){
+    public Customer(String customerId, String name, String email, String phone, LocalDate dateOfBirth){
 
     }
 
