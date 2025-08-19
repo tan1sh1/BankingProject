@@ -8,34 +8,37 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public abstract class Account {
-    private String accountnum;
-    private String CID;
+    private String accountNo;
+    private String customerId;
     private AccountType type;
     private BigDecimal balance;
 
     public Account(){}
 
-    public Account(String accountnum, String CID, AccountType type, BigDecimal balance) {
-        this.accountnum = accountnum;
-        this.CID = CID;
+
+    public Account(String accountNo, String customerId, AccountType type, BigDecimal balance) {
+        this.accountNo = accountNo;
+        this.customerId = customerId;
         this.type = type;
         this.balance = balance;
     }
 
-    public String getAccountnum() {
-        return accountnum;
+
+
+    public String getAccountNo() {
+        return accountNo;
     }
 
-    public void setAccountnum(String accountnum) {
-        this.accountnum = accountnum;
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
     }
 
-    public String getCID() {
-        return CID;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCID(String CID) {
-        this.CID = CID;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public AccountType getType() {
@@ -57,8 +60,8 @@ public abstract class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "accountnum='" + accountnum + '\'' +
-                ", CID='" + CID + '\'' +
+                "accountNo='" + accountNo + '\'' +
+                ", customerId='" + customerId + '\'' +
                 ", type=" + type +
                 ", balance=" + balance +
                 '}';
@@ -68,12 +71,12 @@ public abstract class Account {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(accountnum, account.accountnum) && Objects.equals(CID, account.CID) && type == account.type && Objects.equals(balance, account.balance);
+        return Objects.equals(accountNo, account.accountNo) && Objects.equals(customerId, account.customerId) && type == account.type && Objects.equals(balance, account.balance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountnum);
+        return Objects.hash(accountNo, customerId, type, balance);
     }
 
     public synchronized void deposit(BigDecimal amount) {

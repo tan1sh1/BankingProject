@@ -7,33 +7,46 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Transaction {
-
-    private String Tid;
+    //private final Object toAccountNo;
+    private String transactionId;
     private BigDecimal amount;
-    private String accountnum;
+    private String accountNo;
     private LocalDateTime timestamp;
     private TransactionType type;
     private String toAccountNo;
 
+    public Transaction(){
 
-    public Transaction(String transactionId, String accountNo, TransactionType withdraw, BigDecimal amount, LocalDateTime now, String toAccountNo){
     }
 
-    public Transaction(String tid, BigDecimal amount, String accountnum, LocalDateTime timestamp, TransactionType type) {
-        this.Tid = tid;
+    public Transaction(String transactionId, BigDecimal amount, String accountNo, LocalDateTime timestamp, TransactionType type){
+
+    }
+    //String transactionId, String accountNo, TransactionType transactionType, BigDecimal amount, LocalDateTime timestamp
+
+
+    public Transaction(String transactionId, BigDecimal amount, String accountNo, LocalDateTime timestamp, TransactionType type,String toAccountNo) {
+        this.transactionId = transactionId;
         this.amount = amount;
-        this.accountnum = accountnum;
+        this.accountNo = accountNo;
         this.timestamp = timestamp;
         this.type = type;
-        this.toAccountNo= toAccountNo;
+        this.toAccountNo = toAccountNo;
     }
 
-    public String getTid() {
-        return Tid;
+    public Transaction(String transactionId, String accountNo, TransactionType transactionType, BigDecimal amount, LocalDateTime now) {
+        this.transactionId = transactionId;
+        this.amount = amount;
+        this.accountNo = accountNo;
+        this.type = transactionType;
     }
 
-    public void setTid(String tid) {
-        Tid = tid;
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 
     public BigDecimal getAmount() {
@@ -44,12 +57,12 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public String getAccountnum() {
-        return accountnum;
+    public String getAccountNo() {
+        return accountNo;
     }
 
-    public void setAccountnum(String accountnum) {
-        this.accountnum = accountnum;
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
     }
 
     public LocalDateTime getTimestamp() {
@@ -71,23 +84,30 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "Tid='" + Tid + '\'' +
+                "transactionId='" + transactionId + '\'' +
                 ", amount=" + amount +
-                ", accountnum='" + accountnum + '\'' +
+                ", accountNo='" + accountNo + '\'' +
                 ", timestamp=" + timestamp +
                 ", type=" + type +
                 '}';
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Transaction that = (Transaction) o;
-        return Objects.equals(Tid, this.Tid);
+    public int hashCode(){
+        return Objects.hash(transactionId);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(Tid, amount, accountnum, timestamp, type);
+    public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
+//        if(getClass())
+        if(this == obj){
+            return true;
+        }
+        Transaction transaction  = (Transaction) obj;
+        return Objects.equals(transactionId, transaction.transactionId);
     }
+
 }
